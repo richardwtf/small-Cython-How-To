@@ -5,11 +5,10 @@ make && python create_data.py && python timing_test.py
 
 Usage:
 ------
-(tested with Python 2.6 (edit Makefile when using Python 2.4), Cython 0.12.1,
-gcc 4.4.3)
+(tested with Python 2.6, Cython 0.12.1, gcc 4.4.3, on a Linux x86_64)
 
-Use the included Makefile to create a shared object from the C and Cython
-Code.
+Use the included Makefile (edit to adjust paths and stuff, to suite your
+platform) to create a shared object from the C and Cython Code.
 
 $ make all
 
@@ -36,7 +35,7 @@ The resulting output could look something like this:
 > 
 > Timing C extension:
 > 0.0113111 seconds for normalization of vectorspace
-> 57.9309 seconds for n x n matrix using C extension
+> 56.9309 seconds for n x n matrix using C extension
 > 
 > Timing pure Python Vector class:
 > 0.11858 seconds for normalization of vectorspace
@@ -60,20 +59,17 @@ a vector.c file that can be compiled as a shared object (vector.so) with a
 standard C compiler. The supplied Makefile gives an example on how to do just
 that, but it is probably far from perfect -- adjust it to suite your needs.
 
-For speed comparison and practical reason, two operations which are very common
-in information retrieval -- euclidian normalization of a vector and cosine
-similarity between two normalized vectors -- have been added.
+Note that the speed gains in this example (4x - 10x) are far from what you
+could actually achieve in real life (1000x). This example is basically just a
+reimplementation of the Python dict, which is generally pretty fast. Of course
+it is too generic to exactly suite a special purpose need. The main speed gains
+in this example come from the numerical calculations done in the cosine_sim()
+and normalize() methods.
 
 Of course the code is only intended to give a quick overview of the topic. It
 is neither perfect nor extremely clever. I'm pretty sure several improvements
 for both the Python version and the Cython version of the Vector class could be
-made.
-
-Note that this scenario is pretty biased because a C implementation aimed at a
-specific task will always be much faster than a general purpose Python
-implementation (the Python dict for one is pretty darn generic). Also the
-parameters in use strongly favour the Cython version. But this specialization
-is the reason why one would want to make use of C anyway, right?
+made, but you should get the idea.
 
 
 Links:

@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+# "vector" is the name of the .so file
 from vector import Vector
 
 
@@ -29,5 +30,5 @@ print "v[1] after normalize():"
 v[1].print_weights()
 
 
-print "cosine similarity between v[0] and v[1]:"
+print "cosine similarity of v[0] and v[1]:"
 print v[0].cosine_sim(v[1])
